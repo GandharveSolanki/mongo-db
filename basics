@@ -1,0 +1,51 @@
+use nameofdatabase if not present it will create the database
+db //this will show the current database you are working in 
+db.nameofdb.insertOne({name:"avinash", videos:5, active:true})
+
+or  db.nameofdb.insertMany({name:"avinash", videos:5, active:true},{name:"avinash", videos:5, active:true},{name:"avinash", videos:5, active:true})
+
+to display all the data 
+type db.nameofdb.find()
+
+or db.nameofdbfind().pretty()
+
+mongo db assigns id to each document by itself
+
+db.Mydatabase.find({name:"virat"}) 
+
+db.Mydatabase.find({name:"virat"},{name:1}).pretty()//if you press enter you will only see the name but id will be shown by default  if put 
+db.Mydatabase.find({name:"virat"},{name:0}).pretty()//except name everything will be shown
+
+if you dont want the id to be shown by default
+
+then do 
+db.Mydatabase.find({name:"virat"},{_id:0,name:1}).pretty()
+
+if we do
+db.Mydatabase.find({name:"virat"},{videos:5}).pretty()//then what will happen is all the documents will be returned that have videos as 5..
+
+now if you dont want these many matches you can do something like db.Mydatabase.find({name:"virat"},{_id:0,name:1}).limit(2)
+
+suppose we dont want the first one and we want the second match only ...
+
+db.Mydatabase.find({name:"virat"},{_id:0,name:1}).limit(1).skip(1)
+
+
+show dbs
+
+
+update the documents..
+db.Mydatabase.updateOne({name:"virat"},{$set:{type:"fullStack"}}) 
+
+db.Mydatabase.updateMany({type:"Front End"},{$set:{active:false}}) 
+
+
+delete
+> db.Mydatabase.deleteMany({type:"Backend"}) 
+> db.Mydatabase.deleteMany({})//to delete all in one go 
+
+
+now instead of doing the above bs we can create a collection in the database and in that collection we can insert this many documnets
+
+in the database my database i can do 
+db.student.insertOne({name:"ufc" favcolor:"Green"}) //we created student collection
